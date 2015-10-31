@@ -2,6 +2,7 @@
     "name": "sparkphp/data",
     "description": "Interfaces and traits for creating a data layer",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Spark Contributors",
