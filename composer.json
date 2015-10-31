@@ -1,0 +1,29 @@
+{
+    "name": "sparkphp/data",
+    "description": "Interfaces and traits for creating a data layer",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Spark Contributors",
+            "homepage": "https://github.com/sparkphp"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "nesbot/carbon": "^1"
+    },
+    "require-dev": {
+        "satooshi/php-coveralls": "^0.6",
+        "phpunit/phpunit": "^5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spark\\Data\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SparkTests\\Data\\": "tests/"
+        }
+    }
+}
