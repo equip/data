@@ -66,7 +66,6 @@ trait ImmutableValueObjectTrait
         return $copy;
     }
 
-
     /**
      * Protects against immutable object being modified
      *
@@ -83,6 +82,39 @@ trait ImmutableValueObjectTrait
             'Modification of immutable object `%s` is not allowed',
             get_class($this)
         ));
+    }
+
+    /**
+     * Protects against immutable object being modified
+     *
+     * @param string $key
+     * @param mixed  $value
+     *
+     * @return void
+     *
+     * @throws \RuntimeException
+     */
+    public function __unset($key)
+    {
+        throw new \RuntimeException(sprintf(
+            'Modification of immutable object `%s` is not allowed',
+            get_class($this)
+        ));
+    }
+
+    /**
+     * Checks if a property is defined in the object
+     *
+     * This will return `false` if the value is `null`! To check if a value
+     * exists in the object, use `has()`.
+     *
+     * @param string $key
+     *
+     * @return boolean
+     */
+    public function __isset($key)
+    {
+        return isset($this->$key);
     }
 
     /**

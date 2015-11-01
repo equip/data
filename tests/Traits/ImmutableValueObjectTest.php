@@ -33,6 +33,7 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
         $this->assertNotSame($data, $object->toArray());
 
         $this->assertTrue($object->has('id'));
+        $this->assertTrue($object->has('name'));
         $this->assertFalse($object->has('skip'));
     }
 
@@ -64,6 +65,28 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
     {
         $object = new ImmutableValueObject();
         $object->id = 5;
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessageRegExp /modification of immutable object .* not allowed/i
+     */
+    public function testUnsetThrowsException()
+    {
+        $object = new ImmutableValueObject(['id' => 5]);
+        unset($object->id);
+    }
+
+    public function testPropertyIsSet()
+    {
+        $object = new ImmutableValueObject;
+
+        $this->assertFalse(isset($object->id));
+
+        $object = new ImmutableValueObject(['id' => 3]);
+
+        $this->assertTrue(isset($object->id));
+        $this->assertFalse(isset($object->name));
     }
 
     public function testWithData()
