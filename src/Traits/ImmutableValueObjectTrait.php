@@ -5,6 +5,8 @@ namespace Spark\Data\Traits;
 trait ImmutableValueObjectTrait
 {
     /**
+     * Hydrate the object with new values
+     *
      * @param array $data
      */
     public function __construct(array $data = [])
@@ -15,6 +17,20 @@ trait ImmutableValueObjectTrait
     }
 
     /**
+     * Create a copy of the object with new values
+     *
+     * @param array $data
+     *
+     * @return static
+     */
+    public function withData(array $data)
+    {
+        $copy = clone $this;
+        $copy->apply($data);
+        return $copy;
+    }
+
+    /**
      * Type definitions for object properties
      *
      *     return [
@@ -22,6 +38,8 @@ trait ImmutableValueObjectTrait
      *         'email'      => 'string',
      *         'is_deleted' => 'bool',
      *      ];
+     *
+     * Overload this method to enable type coercion!
      *
      * @return array
      */
@@ -53,53 +71,25 @@ trait ImmutableValueObjectTrait
     }
 
     /**
-     * Create a copy of the object with new values
+     * Check if the current object has a property
      *
-     * @param array $data
+     * @param string $key
      *
-     * @return static
+     * @return boolean
      */
-    public function withData(array $data)
+    public function has($key)
     {
-        $copy = clone $this;
-        $copy->apply($data);
-        return $copy;
+        return property_exists($this, $key);
     }
 
     /**
-     * Protects against immutable object being modified
+     * Get the current object values as an array
      *
-     * @param string $key
-     * @param mixed  $value
-     *
-     * @return void
-     *
-     * @throws \RuntimeException
+     * @return array
      */
-    public function __set($key, $value)
+    public function toArray()
     {
-        throw new \RuntimeException(sprintf(
-            'Modification of immutable object `%s` is not allowed',
-            get_class($this)
-        ));
-    }
-
-    /**
-     * Protects against immutable object being modified
-     *
-     * @param string $key
-     * @param mixed  $value
-     *
-     * @return void
-     *
-     * @throws \RuntimeException
-     */
-    public function __unset($key)
-    {
-        throw new \RuntimeException(sprintf(
-            'Modification of immutable object `%s` is not allowed',
-            get_class($this)
-        ));
+        return get_object_vars($this);
     }
 
     /**
@@ -130,24 +120,38 @@ trait ImmutableValueObjectTrait
     }
 
     /**
-     * Check if the current object has a property
+     * Protects against the object being modified
      *
      * @param string $key
+     * @param mixed  $value
      *
-     * @return boolean
+     * @return void
+     *
+     * @throws \RuntimeException
      */
-    public function has($key)
+    public function __set($key, $value)
     {
-        return property_exists($this, $key);
+        throw new \RuntimeException(sprintf(
+            'Modification of immutable object `%s` is not allowed',
+            get_class($this)
+        ));
     }
 
     /**
-     * Get the current object values as an array
+     * Protects against the object being modified
      *
-     * @return array
+     * @param string $key
+     * @param mixed  $value
+     *
+     * @return void
+     *
+     * @throws \RuntimeException
      */
-    public function toArray()
+    public function __unset($key)
     {
-        return get_object_vars($this);
+        throw new \RuntimeException(sprintf(
+            'Modification of immutable object `%s` is not allowed',
+            get_class($this)
+        ));
     }
 }
