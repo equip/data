@@ -49,6 +49,20 @@ trait ImmutableValueObjectTrait
     }
 
     /**
+     * Expected types for object properties
+     *
+     *     return [
+     *         'user' => User::class,
+     *     ];
+     *
+     * @return array
+     */
+    private function expects()
+    {
+        return [];
+    }
+
+    /**
      * Update the current object with new values
      *
      * NOTE: Be careful not to violate immutability when using this method!
@@ -56,16 +70,30 @@ trait ImmutableValueObjectTrait
      * @param array $data
      *
      * @return void
+     *
+     * @throws \DomainException If a data value is not of the expected type
      */
     private function apply(array $data)
     {
-        $data  = array_intersect_key($data, get_object_vars($this));
-        $types = array_intersect_key($this->types(), $data);
+        $data    = array_intersect_key($data, get_object_vars($this));
+        $types   = array_intersect_key($this->types(), $data);
+        $expects = array_intersect_key($this->expects(), $data);
 
         foreach ($data as $key => $value) {
-            if (null !== $value && isset($types[$key])) {
-                settype($value, $types[$key]);
+            if (null !== $value) {
+                if (isset($types[$key])) {
+                    settype($value, $types[$key]);
+                }
+
+                if (isset($expects[$key]) && false === $data[$key] instanceof $expects[$key]) {
+                    throw new \DomainException(sprintf(
+                        'Expected value of `%s` to be an object of `%s` type',
+                        $key,
+                        $expects[$key]
+                    ));
+                }
             }
+
             $this->$key = $value;
         }
     }

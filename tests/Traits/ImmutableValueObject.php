@@ -10,12 +10,20 @@ class ImmutableValueObject
 
     private $id;
     private $name;
+    private $created_at;
 
     private function types()
     {
         return [
             'id'   => 'int',
             'name' => 'string',
+        ];
+    }
+
+    private function expects()
+    {
+        return [
+            'created_at' => \DateTime::class,
         ];
     }
 }
