@@ -6,9 +6,11 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstruction()
     {
+        $date = new \DateTime;
         $data = [
-            'id'   => 1,
-            'name' => 'Jonny Jones',
+            'id'         => 1,
+            'name'       => 'Jonny Jones',
+            'created_at' => $date,
         ];
 
         $object = new ImmutableValueObject($data);
@@ -55,6 +57,19 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
         $object = new TypelessImmutableValueObject($data);
 
         $this->assertSame($data, $object->toArray());
+    }
+
+    /**
+     * @expectedException \DomainException
+     * @expectedExceptionMessageRegExp /expected value of .* to be an object of .* type/i
+     */
+    public function testConstructionWithExpectationFaiure()
+    {
+        $data = [
+            'created_at' => new \stdClass,
+        ];
+
+        $object = new ImmutableValueObject($data);
     }
 
     /**
