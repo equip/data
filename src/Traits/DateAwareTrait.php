@@ -17,4 +17,16 @@ trait DateAwareTrait
     {
         return new Carbon($this->$key);
     }
+
+    /**
+     * Get a storage-friendly date string for a property
+     *
+     * @param string $key
+     *
+     * @return string
+     */
+    public function dateString($key)
+    {
+        return $this->date($key)->format('r');
+    }
 }
