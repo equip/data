@@ -21,6 +21,6 @@ class DateAwareTest extends \PHPUnit_Framework_TestCase
     public function testDateString()
     {
         $date = $this->object->dateString('at');
-        $this->assertSame('Fri, 30 Oct 2015 15:05:00 -0500', $date);
+        $this->assertStringStartsWith('Fri, 30 Oct 2015 15:05:00 ', $date);
     }
 }
