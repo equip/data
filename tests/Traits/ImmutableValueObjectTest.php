@@ -27,6 +27,7 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
     {
         $data = [
             'id'   => 2,
+            'name' => 'Fuzzy Fred',
             'skip' => true,
         ];
 
@@ -73,13 +74,24 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @expectedException \DomainException
+     * @expectedExceptionMessageRegExp /requires a name/i
+     */
+    public function testValidateThrowsException()
+    {
+        $object = new ImmutableValueObject([
+            'id' => 5,
+        ]);
+    }
+
+    /**
      * @expectedException \RuntimeException
      * @expectedExceptionMessageRegExp /modification of immutable object .* not allowed/i
      */
     public function testSetThrowsException()
     {
-        $object = new ImmutableValueObject();
-        $object->id = 5;
+        $object = new ImmutableValueObject;
+        $object->name = 'Cheery Charlie';
     }
 
     /**
@@ -88,20 +100,18 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
      */
     public function testUnsetThrowsException()
     {
-        $object = new ImmutableValueObject(['id' => 5]);
-        unset($object->id);
+        $object = new ImmutableValueObject;
+        unset($object->name);
     }
 
     public function testPropertyIsSet()
     {
-        $object = new ImmutableValueObject;
+        $object = new ImmutableValueObject([
+            'name' => 'Eager Erin',
+        ]);
 
         $this->assertFalse(isset($object->id));
-
-        $object = new ImmutableValueObject(['id' => 3]);
-
-        $this->assertTrue(isset($object->id));
-        $this->assertFalse(isset($object->name));
+        $this->assertTrue(isset($object->name));
     }
 
     public function testWithData()

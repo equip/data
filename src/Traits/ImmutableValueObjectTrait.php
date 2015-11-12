@@ -63,9 +63,24 @@ trait ImmutableValueObjectTrait
     }
 
     /**
+     * Validates the current object
+     *
+     * @return void
+     *
+     * @throws \DomainException If the object is not valid
+     */
+    private function validate()
+    {
+    }
+
+    /**
      * Update the current object with new values
      *
      * NOTE: Be careful not to violate immutability when using this method!
+     *
+     * @uses types()
+     * @uses expects()
+     * @uses validate()
      *
      * @param array $data
      *
@@ -75,27 +90,36 @@ trait ImmutableValueObjectTrait
      */
     private function apply(array $data)
     {
-        $data    = array_intersect_key($data, get_object_vars($this));
-        $types   = array_intersect_key($this->types(), $data);
-        $expects = array_intersect_key($this->expects(), $data);
+        // Discard any values that do not exist in this object
+        $data = array_intersect_key($data, get_object_vars($this));
+
+        // Type coercion and class expectations are not run on null values
+        $values = array_filter($data, static function ($value) {
+            return null !== $value;
+        });
+
+        $types   = array_intersect_key($this->types(), $values);
+        $expects = array_intersect_key($this->expects(), $values);
+
+        foreach ($types as $key => $type) {
+            settype($data[$key], $type);
+        }
+
+        foreach ($expects as $key => $class) {
+            if (false === $data[$key] instanceof $class) {
+                throw new \DomainException(sprintf(
+                    'Expected value of `%s` to be an object of `%s` type',
+                    $key,
+                    $class
+                ));
+            }
+        }
 
         foreach ($data as $key => $value) {
-            if (null !== $value) {
-                if (isset($types[$key])) {
-                    settype($value, $types[$key]);
-                }
-
-                if (isset($expects[$key]) && false === $data[$key] instanceof $expects[$key]) {
-                    throw new \DomainException(sprintf(
-                        'Expected value of `%s` to be an object of `%s` type',
-                        $key,
-                        $expects[$key]
-                    ));
-                }
-            }
-
             $this->$key = $value;
         }
+
+        $this->validate();
     }
 
     /**

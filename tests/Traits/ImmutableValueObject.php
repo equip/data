@@ -26,4 +26,13 @@ class ImmutableValueObject
             'created_at' => \DateTime::class,
         ];
     }
+
+    private function validate()
+    {
+        if (!$this->name) {
+            throw new \DomainException(
+                'ImmutableValueObject requires a name'
+            );
+        }
+    }
 }
