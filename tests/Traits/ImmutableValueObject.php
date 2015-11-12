@@ -2,9 +2,10 @@
 
 namespace SparkTests\Data\Traits;
 
+use Spark\Data\ArraySerializableInterface;
 use Spark\Data\Traits\ImmutableValueObjectTrait;
 
-class ImmutableValueObject
+class ImmutableValueObject implements ArraySerializableInterface
 {
     use ImmutableValueObjectTrait;
 

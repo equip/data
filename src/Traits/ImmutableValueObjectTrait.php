@@ -2,6 +2,8 @@
 
 namespace Spark\Data\Traits;
 
+use Spark\Data\ArraySerializableInterface;
+
 trait ImmutableValueObjectTrait
 {
     /**
@@ -141,7 +143,12 @@ trait ImmutableValueObjectTrait
      */
     public function toArray()
     {
-        return get_object_vars($this);
+        return array_map(static function ($value) {
+            if ($value instanceof ArraySerializableInterface) {
+                $value = $value->toArray();
+            }
+            return $value;
+        }, get_object_vars($this));
     }
 
     /**

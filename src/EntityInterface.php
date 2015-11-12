@@ -3,6 +3,7 @@
 namespace Spark\Data;
 
 interface EntityInterface extends
+    ArraySerializableInterface,
     \JsonSerializable,
     \Serializable
 {
@@ -23,11 +24,4 @@ interface EntityInterface extends
      * @return static
      */
     public function withData(array $data);
-
-    /**
-     * Get the values of the entity as an array
-     *
-     * @return array
-     */
-    public function toArray();
 }
