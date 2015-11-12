@@ -129,4 +129,22 @@ class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('Jonny Jones', $object->name);
         $this->assertSame('JJ', $copied->name);
     }
+
+    public function testToArrayRecursion()
+    {
+        $parent = new ImmutableValueObject([
+            'name' => 'Nested Nero',
+        ]);
+
+        $object = new NestedImmutableValueObject([
+            'parent' => $parent,
+        ]);
+
+        $array  = $object->toArray();
+        $expect = [
+            'parent' => $parent->toArray(),
+        ];
+
+        $this->assertSame($expect, $array);
+    }
 }
