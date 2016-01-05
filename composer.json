@@ -9,6 +9,9 @@
             "homepage": "https://github.com/equip"
         }
     ],
+    "replace": {
+        "sparkphp/data": "self.version"
+    },
     "require": {
         "php": ">=5.5",
         "nesbot/carbon": "^1"
