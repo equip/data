@@ -1,8 +1,8 @@
 <?php
 
-namespace Spark\Data\Traits;
+namespace Equip\Data\Traits;
 
-use Spark\Data\DiffableInterface;
+use Equip\Data\DiffableInterface;
 
 trait DiffableTrait
 {

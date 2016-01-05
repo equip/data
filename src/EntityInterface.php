@@ -1,6 +1,6 @@
 <?php
 
-namespace Spark\Data;
+namespace Equip\Data;
 
 interface EntityInterface extends
     ArraySerializableInterface,

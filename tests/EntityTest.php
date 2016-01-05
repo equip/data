@@ -1,6 +1,6 @@
 <?php
 
-namespace SparkTests\Data;
+namespace EquipTests\Data;
 
 class EntityTest extends \PHPUnit_Framework_TestCase
 {
@@ -10,7 +10,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
     protected $data;
 
     /**
-     * @var \Spark\Data\EntityInterface
+     * @var \Equip\Data\EntityInterface
      */
     protected $entity;
 
@@ -27,7 +27,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
 
     public function testImplements()
     {
-        $this->assertInstanceOf('Spark\Data\EntityInterface', $this->entity);
+        $this->assertInstanceOf('Equip\Data\EntityInterface', $this->entity);
         $this->assertInstanceOf('JsonSerializable', $this->entity);
         $this->assertInstanceOf('Serializable', $this->entity);
     }

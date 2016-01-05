@@ -1,6 +1,6 @@
 <?php
 
-namespace Spark\Data\Repository;
+namespace Equip\Data\Repository;
 
 interface UpdateRepositoryInterface
 {

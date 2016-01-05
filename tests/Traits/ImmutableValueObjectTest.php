@@ -1,6 +1,6 @@
 <?php
 
-namespace SparkTests\Data\Traits;
+namespace EquipTests\Data\Traits;
 
 class ImmutableValueObjectTest extends \PHPUnit_Framework_TestCase
 {

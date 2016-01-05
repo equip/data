@@ -1,6 +1,6 @@
 <?php
 
-namespace SparkTests\Data\Traits;
+namespace EquipTests\Data\Traits;
 
 class DiffableTest extends \PHPUnit_Framework_TestCase
 {
