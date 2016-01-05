@@ -1,6 +1,6 @@
 <?php
 
-namespace Spark\Data\Traits;
+namespace Equip\Data\Traits;
 
 use Carbon\Carbon;
 

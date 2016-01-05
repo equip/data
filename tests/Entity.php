@@ -1,9 +1,9 @@
 <?php
 
-namespace SparkTests\Data;
+namespace EquipTests\Data;
 
-use Spark\Data\Traits\EntityTrait;
-use Spark\Data\EntityInterface;
+use Equip\Data\Traits\EntityTrait;
+use Equip\Data\EntityInterface;
 
 class Entity implements EntityInterface
 {

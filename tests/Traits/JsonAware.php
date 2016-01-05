@@ -1,8 +1,8 @@
 <?php
 
-namespace SparkTests\Data\Traits;
+namespace EquipTests\Data\Traits;
 
-use Spark\Data\Traits\JsonAwareTrait;
+use Equip\Data\Traits\JsonAwareTrait;
 
 class JsonAware
 {

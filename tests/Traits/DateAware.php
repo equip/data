@@ -1,8 +1,8 @@
 <?php
 
-namespace SparkTests\Data\Traits;
+namespace EquipTests\Data\Traits;
 
-use Spark\Data\Traits\DateAwareTrait;
+use Equip\Data\Traits\DateAwareTrait;
 
 class DateAware
 {

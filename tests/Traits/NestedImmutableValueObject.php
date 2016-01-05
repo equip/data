@@ -1,9 +1,9 @@
 <?php
 
-namespace SparkTests\Data\Traits;
+namespace EquipTests\Data\Traits;
 
-use Spark\Data\ArraySerializableInterface;
-use Spark\Data\Traits\ImmutableValueObjectTrait;
+use Equip\Data\ArraySerializableInterface;
+use Equip\Data\Traits\ImmutableValueObjectTrait;
 
 class NestedImmutableValueObject implements ArraySerializableInterface
 {

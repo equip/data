@@ -1,8 +1,8 @@
 <?php
 
-namespace SparkTests\Data\Traits;
+namespace EquipTests\Data\Traits;
 
-use Spark\Data\Traits\SerializeAwareTrait;
+use Equip\Data\Traits\SerializeAwareTrait;
 
 class SerializeAware
 {

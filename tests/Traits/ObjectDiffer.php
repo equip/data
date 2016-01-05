@@ -1,8 +1,8 @@
 <?php
 
-namespace SparkTests\Data\Traits;
+namespace EquipTests\Data\Traits;
 
-use Spark\Data\Traits\DiffableTrait;
+use Equip\Data\Traits\DiffableTrait;
 
 class ObjectDiffer
 {
