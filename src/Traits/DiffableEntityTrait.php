@@ -9,6 +9,22 @@ namespace Equip\Data\Traits;
 trait DiffableEntityTrait /* implements DiffableInterface */
 {
     /**
+     * @see \Equip\Data\EntityInterface::withData()
+     *
+     * @param array $data
+     *
+     * @return static
+     */
+    abstract public function withData(array $data);
+
+    /**
+     * @see \Equip\Data\ArraySerializableInterface::toArray()
+     *
+     * @return array
+     */
+    abstract public function toArray();
+
+    /**
      * @param array $values
      *
      * @return array
