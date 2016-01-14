@@ -15,8 +15,7 @@ trait DiffableEntityTrait /* implements DiffableInterface */
      */
     public function diff(array $values)
     {
-        $class = get_class($this);
-        $new = new $class($values);
-        return array_diff_assoc($new->toArray(), $this->toArray());
+        $copy = $this->withData($values);
+        return array_diff_assoc($copy->toArray(), $this->toArray());
     }
 }
