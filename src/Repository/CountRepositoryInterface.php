@@ -11,5 +11,5 @@ interface CountRepositoryInterface
      *
      * @return int
      */
-    public function findCountBy(array $criteria);
+    public function countBy(array $criteria);
 }
