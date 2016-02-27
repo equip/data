@@ -32,4 +32,20 @@ class DiffableTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEmpty($changes);
     }
+
+    public function testEntityDiff()
+    {
+        $entity = new DiffableEntity([
+            'id' => 99,
+            'name' => 'Joe',
+            'role' => 'admin',
+        ]);
+
+        $change = [
+            'role' => 'user',
+        ];
+        $values = array_replace($entity->toArray(), $change);
+
+        $this->assertSame($change, $entity->diff($values));
+    }
 }
