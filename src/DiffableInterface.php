@@ -7,7 +7,7 @@ interface DiffableInterface
     /**
      * Find the difference between existing object values
      *
-     * @param array $changes
+     * @param array $values
      *
      * @return array
      */
