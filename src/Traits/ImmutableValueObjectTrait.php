@@ -201,7 +201,6 @@ trait ImmutableValueObjectTrait
      * Protects against the object being modified
      *
      * @param string $key
-     * @param mixed  $value
      *
      * @return void
      *
