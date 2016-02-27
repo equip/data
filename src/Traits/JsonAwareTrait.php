@@ -2,9 +2,11 @@
 
 namespace Equip\Data\Traits;
 
-trait JsonAwareTrait
+trait JsonAwareTrait /* implements JsonSerializable */
 {
-    // JsonSerializable
+    /**
+     * @return array
+     */
     public function jsonSerialize()
     {
         return $this->toArray();
