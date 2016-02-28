@@ -2,15 +2,28 @@
 
 namespace Equip\Data\Traits;
 
-trait SerializeAwareTrait
+trait SerializeAwareTrait /* implements Serializable */
 {
-    // Serializable
+    /**
+     * @see \Equip\Data\EntityInterface::toArray()
+     *
+     * @return array
+     */
+    abstract public function toArray();
+
+    /**
+     * @inheritDoc
+     */
     public function serialize()
     {
         return serialize($this->toArray());
     }
 
-    // Serializable
+    /**
+     * @see \Equip\Data\Traits\ImmutableValueObjectTrait::apply()
+     *
+     * @inheritDoc
+     */
     public function unserialize($data)
     {
         $this->apply(unserialize($data));

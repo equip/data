@@ -3,6 +3,7 @@
 namespace Equip\Data\Traits;
 
 use Equip\Data\ArraySerializableInterface;
+use RuntimeException;
 
 trait ImmutableValueObjectTrait
 {
@@ -190,7 +191,7 @@ trait ImmutableValueObjectTrait
      */
     public function __set($key, $value)
     {
-        throw new \RuntimeException(sprintf(
+        throw new RuntimeException(sprintf(
             'Modification of immutable object `%s` is not allowed',
             get_class($this)
         ));
@@ -200,7 +201,6 @@ trait ImmutableValueObjectTrait
      * Protects against the object being modified
      *
      * @param string $key
-     * @param mixed  $value
      *
      * @return void
      *
@@ -208,7 +208,7 @@ trait ImmutableValueObjectTrait
      */
     public function __unset($key)
     {
-        throw new \RuntimeException(sprintf(
+        throw new RuntimeException(sprintf(
             'Modification of immutable object `%s` is not allowed',
             get_class($this)
         ));

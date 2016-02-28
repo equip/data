@@ -2,10 +2,13 @@
 
 namespace Equip\Data;
 
+use JsonSerializable;
+use Serializable;
+
 interface EntityInterface extends
     ArraySerializableInterface,
-    \JsonSerializable,
-    \Serializable
+    JsonSerializable,
+    Serializable
 {
     /**
      * Check if a property exists in this entity
