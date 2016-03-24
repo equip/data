@@ -14,6 +14,15 @@ interface RepositoryInterface
     public function find($id);
 
     /**
+     * Find multiple objects by their identifiers
+     *
+     * @param array $ids
+     *
+     * @return array
+     */
+    public function findByIds(array $ids);
+
+    /**
      * Find a single object by variable criteria
      *
      * @param array $criteria
