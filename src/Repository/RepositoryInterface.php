@@ -18,7 +18,7 @@ interface RepositoryInterface
      *
      * @param array $ids
      *
-     * @return array
+     * @return array|Traversable
      */
     public function findByIds(array $ids);
 
@@ -39,7 +39,7 @@ interface RepositoryInterface
      * @param integer $limit
      * @param integer $offset
      *
-     * @return array
+     * @return array|Traversable
      */
     public function findBy(array $criteria, array $order_by = null, $limit = null, $offset = null);
 }
