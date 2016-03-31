@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 _..._
 
+## 2.2.0 - 2016-03-31
+
+* Add `PartialRepositoryInterface`
+
 ## 2.1.0 - 2016-03-25
 
 * Modify `RepositoryInterface` to support `Traversable` return values
