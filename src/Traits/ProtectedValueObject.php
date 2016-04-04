@@ -4,7 +4,7 @@ namespace Equip\Data\Traits;
 
 use RuntimeException;
 
-trait ProtectedValueObjectTrait
+trait ProtectedValueObject
 {
     /**
      * Checks if a property is defined in the object
