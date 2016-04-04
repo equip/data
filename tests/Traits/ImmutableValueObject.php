@@ -7,7 +7,7 @@ use Equip\Data\Traits\ImmutableValueObjectTrait;
 
 class ImmutableValueObject implements ArraySerializableInterface
 {
-    use ImmutableValueObjectTrait;
+    use ImmutableValueObject;
 
     private $id;
     private $name;

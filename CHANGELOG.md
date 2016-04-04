@@ -7,6 +7,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 _..._
 
+## 2.3.0 - 2016-04-04
+
+- Split `ProtectedValueObject` functionality from `ImmutableValueObject`
+
 ## 2.2.0 - 2016-03-31
 
 * Add `PartialRepositoryInterface`
