@@ -15,7 +15,7 @@ class DateAwareTest extends \PHPUnit_Framework_TestCase
     public function testDate()
     {
         $date = $this->object->date('at');
-        $this->assertInstanceOf('Carbon\Carbon', $date);
+        $this->assertInstanceOf('Cake\Chronos\Chronos', $date);
     }
 
     public function testDateString()
