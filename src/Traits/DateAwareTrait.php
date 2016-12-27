@@ -2,7 +2,7 @@
 
 namespace Equip\Data\Traits;
 
-use Carbon\Carbon;
+use Cake\Chronos\Chronos;
 
 trait DateAwareTrait
 {
@@ -15,7 +15,7 @@ trait DateAwareTrait
      */
     public function date($key)
     {
-        return new Carbon($this->$key);
+        return new Chronos($this->$key);
     }
 
     /**

@@ -39,7 +39,7 @@ class EntityTest extends \PHPUnit_Framework_TestCase
 
     public function testDate()
     {
-        $this->assertInstanceOf('Carbon\Carbon', $this->entity->date('created_at'));
+        $this->assertInstanceOf('Cake\Chronos\Chronos', $this->entity->date('created_at'));
     }
 
     public function testJsonEncode()
